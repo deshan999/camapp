@@ -145,8 +145,8 @@
         const constraints = {
             video: {
                 deviceId: deviceId ? { exact: deviceId } : undefined,
-                width: 3840,
-                height: 2160
+                width: { ideal: 3840 },
+                height: { ideal: 2160 }
             }
         };
 
@@ -194,15 +194,15 @@
         document.querySelector('.mode-selector span.active').classList.remove('active');
         document.getElementById('video-mode').classList.add('active');
         isVideoMode = true;
-        document.getElementById('resolution').textContent = '4K';
+        document.getElementById('resolution').textContent = 'FHD';
     });
 
     function capturePhoto() {
         const canvas = document.createElement('canvas');
-        canvas.height = 3840;
-        canvas.width = 2160;
+        canvas.width = video.videoWidth; // Use video dimensions
+        canvas.height = video.videoHeight; // Use video dimensions
         const context = canvas.getContext('2d');
-        context.drawImage(video, 0, 0, canvas.height, canvas.width);
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
         canvas.toBlob(blob => {
             const link = document.createElement('a');
@@ -213,7 +213,7 @@
     }
 
     function startRecording() {
-        mediaRecorder = new MediaRecorder(currentStream, { mimeType: 'video/webm; codecs=vp9' });
+        mediaRecorder = new MediaRecorder(currentStream, { mimeType: 'video/mp4' });
         recordedChunks = [];
         mediaRecorder.ondataavailable = function(event) {
             if (event.data.size > 0) {
@@ -233,10 +233,10 @@
     }
 
     function saveVideo() {
-        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const blob = new Blob(recordedChunks, { type: 'video/mp4' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = 'video.webm';
+        link.download = 'video.mp4';
         link.click();
     }
 
