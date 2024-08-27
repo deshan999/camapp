@@ -24,82 +24,10 @@
             max-width: 400px;
             max-height: 800px;
             background-color: black;
-            border: 1px solid white;
-            border-radius: 20px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        #camera-view {
-            width: 100%;
-            height: calc(100% - 100px);
-            background-color: black;
-            position: relative;
-        }
-
-        #camera-view video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        #shutter-button {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: white;
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .top-controls {
-            position: absolute;
-            top: 10px;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            color: yellow;
-        }
-
-        .bottom-controls {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 20px;
-        }
-
-        .mode-selector {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .mode-selector span {
-            cursor: pointer;
-            padding: 5px 10px;
-            font-size: 18px;
-        }
-
-        .mode-selector span.active {
-            color: yellow;
-        }
-
-        #recording-indicator {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 15px;
-            height: 15px;
-            background-color: red;
-            border-radius: 50%;
-            display: none;
         }
     </style>
 </head>
