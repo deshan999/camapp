@@ -198,23 +198,19 @@
     });
 
     function capturePhoto() {
-    // Create a canvas element with the same dimensions as the video
-    const canvas = document.createElement('canvas');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    const context = canvas.getContext('2d');
-    
-    // Draw the current frame from the video onto the canvas
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const canvas = document.createElement('canvas');
+        canvas.height = 3840;
+        canvas.width = 2160;
+        const context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0, canvas.height, canvas.width);
 
-    // Convert canvas content to a Blob and create a download link
-    canvas.toBlob(blob => {
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'photo.jpg';
-        link.click();
-    }, 'image/jpeg');
-}
+        canvas.toBlob(blob => {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'photo.jpg';
+            link.click();
+        }, 'image/jpeg');
+    }
 
     function startRecording() {
         mediaRecorder = new MediaRecorder(currentStream, { mimeType: 'video/webm; codecs=vp9' });
